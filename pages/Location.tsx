@@ -1,33 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MapPin, Navigation, ArrowRight, CornerRightUp } from 'lucide-react';
 import locationContent from '../content/location.json';
-import { fetchSanity } from '../lib/sanity';
-import { locationQuery } from '../lib/sanityQueries';
-
-type LocationContent = typeof locationContent;
 
 const Location: React.FC = () => {
-  const [content, setContent] = useState<LocationContent>(locationContent);
-
-  useEffect(() => {
-    let active = true;
-    fetchSanity<LocationContent>(locationQuery).then((data) => {
-      if (data && active) {
-        setContent(data);
-      }
-    });
-    return () => {
-      active = false;
-    };
-  }, []);
-
   return (
     <div className="min-h-screen bg-brand-gray">
       <div className="bg-brand-dark py-20 text-center text-white">
-        <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">{content.header.title}</h1>
+        <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">{locationContent.header.title}</h1>
         <p className="text-slate-400 text-lg flex items-center justify-center gap-2">
           <MapPin size={20} className="text-brand-red" />
-          {content.header.address}
+          {locationContent.header.address}
         </p>
       </div>
 
@@ -49,8 +31,8 @@ const Location: React.FC = () => {
               {/* Vertical Line */}
               <div className="absolute left-[19px] top-4 bottom-4 w-0.5 bg-slate-200"></div>
 
-              {content.steps.map((step, index) => {
-                const isLast = index === content.steps.length - 1;
+              {locationContent.steps.map((step, index) => {
+                const isLast = index === locationContent.steps.length - 1;
                 const isFirst = index === 0;
                 return (
                   <div key={step.title} className={`relative pl-12 ${isLast ? '' : 'pb-10'} group`}>
@@ -77,7 +59,7 @@ const Location: React.FC = () => {
                 <ArrowRight size={14} />
               </div>
               <p className="text-sm text-amber-900 leading-relaxed">
-                <strong>{content.tip.title}</strong> {content.tip.text}
+                <strong>{locationContent.tip.title}</strong> {locationContent.tip.text}
               </p>
             </div>
           </div>
@@ -86,7 +68,7 @@ const Location: React.FC = () => {
           <div className="lg:w-7/12 relative bg-slate-200 group overflow-hidden">
             {/* Map Placeholder Image - in a real app, this would be an embed */}
             <img
-              src={content.map.image}
+              src={locationContent.map.image}
               alt="Map Background"
               className="w-full h-full object-cover filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-100"
             />
@@ -97,15 +79,15 @@ const Location: React.FC = () => {
                 <div className="bg-brand-red p-4 rounded-full text-white mb-4 shadow-lg shadow-red-500/30 animate-bounce">
                   <MapPin size={32} fill="currentColor" />
                 </div>
-                <span className="font-display font-bold text-xl text-slate-900">{content.map.cardTitle}</span>
-                <span className="text-sm text-slate-500 mt-1 mb-4">{content.map.cardSubtitle}</span>
+                <span className="font-display font-bold text-xl text-slate-900">{locationContent.map.cardTitle}</span>
+                <span className="text-sm text-slate-500 mt-1 mb-4">{locationContent.map.cardSubtitle}</span>
                 <a
-                  href={content.map.link}
+                  href={locationContent.map.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="pointer-events-auto bg-brand-dark hover:bg-slate-900 text-white text-xs font-bold uppercase tracking-wider py-3 px-6 rounded-lg transition-colors w-full flex items-center justify-center gap-2"
                 >
-                  {content.map.linkLabel} <CornerRightUp size={14} />
+                  {locationContent.map.linkLabel} <CornerRightUp size={14} />
                 </a>
               </div>
             </div>
