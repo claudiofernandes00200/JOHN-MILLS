@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Wrench, CheckSquare, Monitor, Disc, Car, Zap, Activity, AlertTriangle, Layers, Ruler, Wind, ChevronRight } from 'lucide-react';
 import servicesContent from '../content/services.json';
+import { fetchSanity } from '../lib/sanity';
+import { servicesQuery } from '../lib/sanityQueries';
+
+type ServicesContent = typeof servicesContent;
 
 const Services: React.FC = () => {
+  const [content, setContent] = useState<ServicesContent>(servicesContent);
+
+  useEffect(() => {
+    let active = true;
+    fetchSanity<ServicesContent>(servicesQuery).then((data) => {
+      if (data && active) {
+        setContent(data);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const iconMap = {
     wrench: Wrench,
     checksquare: CheckSquare,
@@ -17,7 +35,7 @@ const Services: React.FC = () => {
     layers: Layers
   };
 
-  const highlightTitleLines = servicesContent.highlight.title.split('\n');
+  const highlightTitleLines = content.highlight.title.split('\n');
 
   return (
     <div className="bg-brand-light min-h-screen">
@@ -26,9 +44,9 @@ const Services: React.FC = () => {
         <div className="absolute inset-0 opacity-20 bg-carbon"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/50 to-brand-dark"></div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 animate-fade-in-up">{servicesContent.header.title}</h1>
+          <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 animate-fade-in-up">{content.header.title}</h1>
           <p className="text-slate-400 max-w-2xl mx-auto text-xl font-light leading-relaxed animate-fade-in-up delay-100">
-            {servicesContent.header.subtitle}
+            {content.header.subtitle}
           </p>
         </div>
       </div>
@@ -36,7 +54,7 @@ const Services: React.FC = () => {
       {/* Services Grid - Negative margin pulls it up */}
       <div className="container mx-auto px-4 py-20 -mt-32 relative z-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesContent.services.map((service, index) => {
+          {content.services.map((service, index) => {
             const Icon = iconMap[service.iconName as keyof typeof iconMap] ?? Wrench;
             return (
             <div key={service.id ?? index} className="bg-white p-10 rounded-2xl shadow-xl shadow-slate-200/50 border border-white group hover:border-brand-red/30 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden">
@@ -76,10 +94,10 @@ const Services: React.FC = () => {
               ))}
             </h2>
             <p className="text-slate-600 max-w-xl text-lg mb-8 leading-relaxed">
-              {servicesContent.highlight.body}
+              {content.highlight.body}
             </p>
             <ul className="flex flex-wrap gap-6 text-sm font-bold text-slate-700 uppercase tracking-wide">
-               {servicesContent.highlight.bullets.map((bullet) => (
+               {content.highlight.bullets.map((bullet) => (
                  <li key={bullet} className="flex items-center gap-3">
                    <div className="w-3 h-3 bg-green-500 rounded-full shadow-lg shadow-green-500/50"></div>
                    {bullet}
@@ -89,8 +107,8 @@ const Services: React.FC = () => {
           </div>
           
           <div className="relative z-10 shrink-0">
-             <a href={`tel:${servicesContent.highlight.ctaPhone}`} className="inline-flex items-center gap-4 bg-brand-dark hover:bg-slate-900 text-white font-display font-bold uppercase tracking-widest py-5 px-10 rounded-sm transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 group-hover:ring-4 ring-brand-red/20">
-               <Car size={24} /> {servicesContent.highlight.ctaLabel}
+             <a href={`tel:${content.highlight.ctaPhone}`} className="inline-flex items-center gap-4 bg-brand-dark hover:bg-slate-900 text-white font-display font-bold uppercase tracking-widest py-5 px-10 rounded-sm transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 group-hover:ring-4 ring-brand-red/20">
+               <Car size={24} /> {content.highlight.ctaLabel}
              </a>
           </div>
 

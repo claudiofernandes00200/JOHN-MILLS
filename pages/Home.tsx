@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Shield, Clock, Settings, Star, ChevronRight } from 'lucide-react';
 import homeContent from '../content/home.json';
+import { fetchSanity } from '../lib/sanity';
+import { homeQuery } from '../lib/sanityQueries';
+
+type HomeContent = typeof homeContent;
 
 const Home: React.FC = () => {
+  const [content, setContent] = useState<HomeContent>(homeContent);
+
+  useEffect(() => {
+    let active = true;
+    fetchSanity<HomeContent>(homeQuery).then((data) => {
+      if (data && active) {
+        setContent(data);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <div className="w-full bg-brand-light">
       {/* Hero Section */}
@@ -26,22 +44,22 @@ const Home: React.FC = () => {
             {/* Tagline Pill */}
             <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-white text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in-up shadow-lg shadow-black/20">
               <span className="w-2 h-2 rounded-full bg-brand-red animate-[pulse_2s_infinite]"></span>
-              {homeContent.heroTagline}
+              {content.heroTagline}
             </div>
             
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-8 leading-[0.9] animate-fade-in-up delay-100 drop-shadow-2xl">
-              {homeContent.heroTitleLine1}{' '}
+              {content.heroTitleLine1}{' '}
               <span className="text-stroke-white text-transparent bg-clip-text bg-white/10">
-                {homeContent.heroTitleLine1Emphasis}
+                {content.heroTitleLine1Emphasis}
               </span>{' '}
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-red-500 to-orange-500">
-                {homeContent.heroTitleLine2}
+                {content.heroTitleLine2}
               </span>
             </h1>
             
             <p className="text-slate-300 text-lg md:text-2xl mb-12 leading-relaxed max-w-2xl animate-fade-in-up delay-200 border-l-4 border-brand-red pl-8 font-light">
-              {homeContent.heroSubtitle}
+              {content.heroSubtitle}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 animate-fade-in-up delay-300">

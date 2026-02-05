@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Quote, Star, MessageSquare } from 'lucide-react';
 import { Testimonial } from '../types';
 import testimonialsContent from '../content/testimonials.json';
+import { fetchSanity } from '../lib/sanity';
+import { testimonialsQuery } from '../lib/sanityQueries';
+
+type TestimonialsContent = typeof testimonialsContent;
 
 const Testimonials: React.FC = () => {
-  const reviews: Testimonial[] = testimonialsContent.reviews;
+  const [content, setContent] = useState<TestimonialsContent>(testimonialsContent);
+
+  useEffect(() => {
+    let active = true;
+    fetchSanity<TestimonialsContent>(testimonialsQuery).then((data) => {
+      if (data && active) {
+        setContent(data);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const reviews: Testimonial[] = content.reviews;
 
   return (
     <div className="min-h-screen bg-brand-light">
@@ -14,8 +32,8 @@ const Testimonials: React.FC = () => {
          <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-red/20 rounded-full blur-3xl mix-blend-screen animate-pulse"></div>
         
         <div className="relative z-10">
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">{testimonialsContent.header.title}</h1>
-          <p className="text-slate-400 max-w-2xl mx-auto text-xl font-light">{testimonialsContent.header.subtitle}</p>
+          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">{content.header.title}</h1>
+          <p className="text-slate-400 max-w-2xl mx-auto text-xl font-light">{content.header.subtitle}</p>
         </div>
       </div>
 
@@ -56,9 +74,9 @@ const Testimonials: React.FC = () => {
         
         <div className="mt-20 text-center">
              <div className="inline-flex flex-col items-center">
-                <p className="text-slate-500 mb-8 text-lg font-light">{testimonialsContent.cta.text}</p>
-                <a href={`mailto:${testimonialsContent.cta.email}`} className="flex items-center gap-3 bg-white hover:bg-slate-50 border border-slate-200 hover:border-brand-red/30 text-slate-800 font-bold uppercase tracking-widest py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all group">
-                   <MessageSquare size={20} className="text-brand-red group-hover:scale-110 transition-transform" /> {testimonialsContent.cta.buttonLabel}
+                <p className="text-slate-500 mb-8 text-lg font-light">{content.cta.text}</p>
+                <a href={`mailto:${content.cta.email}`} className="flex items-center gap-3 bg-white hover:bg-slate-50 border border-slate-200 hover:border-brand-red/30 text-slate-800 font-bold uppercase tracking-widest py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all group">
+                   <MessageSquare size={20} className="text-brand-red group-hover:scale-110 transition-transform" /> {content.cta.buttonLabel}
                 </a>
              </div>
         </div>
