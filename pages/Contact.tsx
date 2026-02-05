@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin, Send, Clock, Facebook, ArrowRight } from 'lucide-react';
 import contactContent from '../content/contact.json';
 
 const Contact: React.FC = () => {
   const toTel = (value: string) => value.replace(/\s+/g, '');
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const hash = window.location.hash;
+    setSubmitted(hash.includes('success=1'));
+  }, []);
 
   return (
     <div className="min-h-screen bg-brand-light">
@@ -109,21 +118,39 @@ const Contact: React.FC = () => {
             <div className="max-w-2xl mx-auto">
                 <h2 className="text-3xl font-display font-bold mb-4 text-slate-900">{contactContent.form.title}</h2>
                 <p className="text-slate-500 mb-12 text-lg font-light">{contactContent.form.subtitle}</p>
+
+                {submitted && (
+                  <div className="mb-10 rounded-xl border border-green-200 bg-green-50 px-6 py-4 text-green-800 text-sm font-semibold">
+                    Thanks! Your message has been received. We will get back to you shortly.
+                  </div>
+                )}
                 
-                <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+                <form
+                  className="space-y-8"
+                  name="contact"
+                  method="POST"
+                  action="/#/contact?success=1"
+                  data-netlify="true"
+                  netlify-honeypot="bot-field"
+                >
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="bot-field" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="group">
                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 group-focus-within:text-brand-red transition-colors">{contactContent.form.nameLabel}</label>
                         <input 
                         type="text" 
+                        name="name"
                         className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 font-medium text-slate-700 placeholder:text-slate-300"
                         placeholder={contactContent.form.namePlaceholder}
+                        required
                         />
                     </div>
                     <div className="group">
                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 group-focus-within:text-brand-red transition-colors">{contactContent.form.phoneLabel}</label>
                         <input 
                         type="tel" 
+                        name="phone"
                         className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 font-medium text-slate-700 placeholder:text-slate-300"
                         placeholder={contactContent.form.phonePlaceholder}
                         />
@@ -133,7 +160,7 @@ const Contact: React.FC = () => {
                 <div className="group">
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 group-focus-within:text-brand-red transition-colors">{contactContent.form.subjectLabel}</label>
                     <div className="relative">
-                        <select className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 font-medium text-slate-700 appearance-none cursor-pointer">
+                        <select name="subject" className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 font-medium text-slate-700 appearance-none cursor-pointer">
                             {contactContent.form.subjectOptions.map((option) => (
                               <option key={option}>{option}</option>
                             ))}
@@ -147,8 +174,10 @@ const Contact: React.FC = () => {
                 <div className="group">
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 group-focus-within:text-brand-red transition-colors">{contactContent.form.messageLabel}</label>
                     <textarea 
+                    name="message"
                     className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 font-medium text-slate-700 placeholder:text-slate-300 h-40 resize-none"
                     placeholder={contactContent.form.messagePlaceholder}
+                    required
                     ></textarea>
                 </div>
                 

@@ -2,6 +2,15 @@ backend:
   name: git-gateway
   branch: main
 
+site_url: "https://johnmmotors.netlify.app"
+display_url: "https://johnmmotors.netlify.app"
+logo_url: "/admin/logo.svg"
+locale: "en"
+publish_mode: editorial_workflow
+
+editor:
+  preview: false
+
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
