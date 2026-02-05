@@ -1,0 +1,35 @@
+{
+  "header": {
+    "title": "Find Us",
+    "address": "Kilmacredock, Maynooth, Co.Kildare"
+  },
+  "steps": [
+    {
+      "title": "M4 Motorway",
+      "text": "Take the Leixlip exit (Junction 6) from the M4 motorway."
+    },
+    {
+      "title": "Roundabout",
+      "text": "Take the left exit on the next roundabout."
+    },
+    {
+      "title": "T-Junction",
+      "text": "Continue until you reach a T-junction, and then turn left."
+    },
+    {
+      "title": "Arrival",
+      "text": "The road turns sharp right. JM Motors is 100m on the left. Look for the sign outside."
+    }
+  ],
+  "tip": {
+    "title": "Cannot make it?",
+    "text": "We offer a free collection and return service. Call us to arrange."
+  },
+  "map": {
+    "image": "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1600",
+    "cardTitle": "JM Motors",
+    "cardSubtitle": "Kilmacredock, Maynooth",
+    "link": "https://www.google.com/maps/search/?api=1&query=Kilmacredock+Maynooth",
+    "linkLabel": "Open Google Maps"
+  }
+}

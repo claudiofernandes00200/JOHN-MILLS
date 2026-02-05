@@ -1,0 +1,41 @@
+{
+  "header": {
+    "title": "About JM Motors",
+    "subtitle": "Reliable - Experienced - Local",
+    "image": "https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&q=80&w=2070"
+  },
+  "intro": {
+    "title": "Your Local Mechanic Since 2004",
+    "paragraphs": [
+      "John Mills has been a mechanic for over 20 years, operating as an independent mechanic for the last 11 years. What started as a passion for engines has grown into Maynooth's most trusted independent garage.",
+      "At JM Motors, we believe that a high standard of workmanship is the top priority. We have built a reputation in Maynooth and Kildare for honesty, reliability, and technical expertise. We do not just fix cars; we build relationships with our customers based on trust.",
+      "We use only the latest technology for our diagnostic systems and only recommended parts to ensure safety and peace of mind. Whether you drive a compact car, a commercial van, or a 4x4, we treat every vehicle with the same level of meticulous care as if it were our own."
+    ],
+    "highlights": [
+      "20+ Years Experience",
+      "Latest Diagnostic Tech",
+      "Fully Insured Service",
+      "Warranty Protected",
+      "All Makes and Models",
+      "Free Collection"
+    ],
+    "ctaLabel": "Contact The Team"
+  },
+  "visual": {
+    "cardImage": "https://images.unsplash.com/photo-1504222490245-4f67ad434259?auto=format&fit=crop&q=80&w=1000",
+    "cardTitle": "Expert Diagnostics",
+    "cardSubtitle": "Finding the root cause, not just the symptom.",
+    "stats": [
+      {
+        "value": "15+",
+        "label": "Years in Business"
+      },
+      {
+        "value": "1000s",
+        "label": "Happy Customers"
+      }
+    ],
+    "promiseTitle": "Our Promise",
+    "promiseText": "We promise to provide transparent pricing, honest advice, and quality workmanship on every single job. No hidden fees, no unnecessary repairs."
+  }
+}

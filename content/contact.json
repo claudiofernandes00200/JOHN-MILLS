@@ -1,0 +1,46 @@
+{
+  "header": {
+    "title": "Get In Touch",
+    "subtitle": "Booking a service? Need a quote? We are here to help.",
+    "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=2070"
+  },
+  "info": {
+    "title": "Contact Info",
+    "addressTitle": "Our Garage",
+    "addressLines": [
+      "JM Motors, Kilmacredock,",
+      "Maynooth, Co.Kildare"
+    ],
+    "phoneTitle": "Phone",
+    "phoneOffice": "01 610 4376",
+    "phoneMobile": "087 232 5767",
+    "emailTitle": "Email",
+    "email": "jmmotors@eircom.net",
+    "hoursTitle": "Working Hours",
+    "hoursLines": [
+      "Mon-Fri: 8:30am - 6:00pm",
+      "Saturday: 9:00am - 1:00pm"
+    ],
+    "socialLabel": "Social Media",
+    "facebookUrl": "#"
+  },
+  "form": {
+    "title": "Send us a Message",
+    "subtitle": "Fill out the form below and we will get back to you shortly.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "John Doe",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "087 123 4567",
+    "subjectLabel": "Subject",
+    "subjectOptions": [
+      "General Enquiry",
+      "Book a Service",
+      "Pre-NCT Check",
+      "Crash Repairs",
+      "Other"
+    ],
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your vehicle issues...",
+    "submitLabel": "Send Message"
+  }
+}

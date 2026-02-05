@@ -18,3 +18,195 @@ collections:
           - { label: "Hero Line 1 Emphasis", name: "heroTitleLine1Emphasis", widget: "string" }
           - { label: "Hero Line 2", name: "heroTitleLine2", widget: "string" }
           - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text" }
+      - label: "About"
+        name: "about"
+        file: "content/about.json"
+        fields:
+          - label: "Header"
+            name: "header"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Image URL", name: "image", widget: "string" }
+          - label: "Intro"
+            name: "intro"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Paragraphs"
+                name: "paragraphs"
+                widget: "list"
+                field: { label: "Paragraph", name: "paragraph", widget: "text" }
+              - label: "Highlights"
+                name: "highlights"
+                widget: "list"
+                field: { label: "Highlight", name: "highlight", widget: "string" }
+              - { label: "CTA Label", name: "ctaLabel", widget: "string" }
+          - label: "Visual"
+            name: "visual"
+            widget: "object"
+            fields:
+              - { label: "Card Image URL", name: "cardImage", widget: "string" }
+              - { label: "Card Title", name: "cardTitle", widget: "string" }
+              - { label: "Card Subtitle", name: "cardSubtitle", widget: "string" }
+              - label: "Stats"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { label: "Value", name: "value", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+              - { label: "Promise Title", name: "promiseTitle", widget: "string" }
+              - { label: "Promise Text", name: "promiseText", widget: "text" }
+      - label: "Services"
+        name: "services"
+        file: "content/services.json"
+        fields:
+          - label: "Header"
+            name: "header"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "number", value_type: "int" }
+              - label: "Icon"
+                name: "iconName"
+                widget: "select"
+                options:
+                  - { label: "Wrench", value: "wrench" }
+                  - { label: "Check Square", value: "checksquare" }
+                  - { label: "Monitor", value: "monitor" }
+                  - { label: "Disc", value: "disc" }
+                  - { label: "Wind", value: "wind" }
+                  - { label: "Zap", value: "zap" }
+                  - { label: "Activity", value: "activity" }
+                  - { label: "Ruler", value: "ruler" }
+                  - { label: "Alert Triangle", value: "alerttriangle" }
+                  - { label: "Car", value: "car" }
+                  - { label: "Layers", value: "layers" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Highlight"
+            name: "highlight"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Body", name: "body", widget: "text" }
+              - label: "Bullets"
+                name: "bullets"
+                widget: "list"
+                field: { label: "Bullet", name: "bullet", widget: "string" }
+              - { label: "CTA Label", name: "ctaLabel", widget: "string" }
+              - { label: "CTA Phone", name: "ctaPhone", widget: "string" }
+      - label: "Location"
+        name: "location"
+        file: "content/location.json"
+        fields:
+          - label: "Header"
+            name: "header"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Address", name: "address", widget: "string" }
+          - label: "Steps"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Tip"
+            name: "tip"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Map"
+            name: "map"
+            widget: "object"
+            fields:
+              - { label: "Image URL", name: "image", widget: "string" }
+              - { label: "Card Title", name: "cardTitle", widget: "string" }
+              - { label: "Card Subtitle", name: "cardSubtitle", widget: "string" }
+              - { label: "Link", name: "link", widget: "string" }
+              - { label: "Link Label", name: "linkLabel", widget: "string" }
+      - label: "Testimonials"
+        name: "testimonials"
+        file: "content/testimonials.json"
+        fields:
+          - label: "Header"
+            name: "header"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - label: "Reviews"
+            name: "reviews"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "number", value_type: "int" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string", required: false }
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - { label: "Content", name: "content", widget: "text" }
+          - label: "CTA"
+            name: "cta"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Button Label", name: "buttonLabel", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+      - label: "Contact"
+        name: "contact"
+        file: "content/contact.json"
+        fields:
+          - label: "Header"
+            name: "header"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Image URL", name: "image", widget: "string" }
+          - label: "Info"
+            name: "info"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Address Title", name: "addressTitle", widget: "string" }
+              - label: "Address Lines"
+                name: "addressLines"
+                widget: "list"
+                field: { label: "Line", name: "line", widget: "string" }
+              - { label: "Phone Title", name: "phoneTitle", widget: "string" }
+              - { label: "Phone Office", name: "phoneOffice", widget: "string" }
+              - { label: "Phone Mobile", name: "phoneMobile", widget: "string" }
+              - { label: "Email Title", name: "emailTitle", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Hours Title", name: "hoursTitle", widget: "string" }
+              - label: "Hours Lines"
+                name: "hoursLines"
+                widget: "list"
+                field: { label: "Line", name: "line", widget: "string" }
+              - { label: "Social Label", name: "socialLabel", widget: "string" }
+              - { label: "Facebook URL", name: "facebookUrl", widget: "string" }
+          - label: "Form"
+            name: "form"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Name Label", name: "nameLabel", widget: "string" }
+              - { label: "Name Placeholder", name: "namePlaceholder", widget: "string" }
+              - { label: "Phone Label", name: "phoneLabel", widget: "string" }
+              - { label: "Phone Placeholder", name: "phonePlaceholder", widget: "string" }
+              - { label: "Subject Label", name: "subjectLabel", widget: "string" }
+              - label: "Subject Options"
+                name: "subjectOptions"
+                widget: "list"
+                field: { label: "Option", name: "option", widget: "string" }
+              - { label: "Message Label", name: "messageLabel", widget: "string" }
+              - { label: "Message Placeholder", name: "messagePlaceholder", widget: "string" }
+              - { label: "Submit Label", name: "submitLabel", widget: "string" }

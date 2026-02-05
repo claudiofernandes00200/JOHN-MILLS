@@ -1,0 +1,85 @@
+{
+  "header": {
+    "title": "Our Services",
+    "subtitle": "JM Motors provides a full range of car repairs and servicing. We pride ourselves on using only recommended parts and the latest technology."
+  },
+  "services": [
+    {
+      "id": 1,
+      "iconName": "wrench",
+      "title": "Full Car Servicing",
+      "description": "Comprehensive interim and full servicing for all makes and models to maintain manufacturer warranties and keep your vehicle running smoothly."
+    },
+    {
+      "id": 2,
+      "iconName": "checksquare",
+      "title": "Pre-NCT / DOE Checks",
+      "description": "Rigorous multi-point inspection to prepare your vehicle for the National Car Test, identifying failure points before you go."
+    },
+    {
+      "id": 3,
+      "iconName": "monitor",
+      "title": "Computer Diagnostics",
+      "description": "Using dealer-level diagnostic software to identify fault codes, engine warning lights, and complex electrical system errors."
+    },
+    {
+      "id": 4,
+      "iconName": "disc",
+      "title": "Brakes and Clutches",
+      "description": "Expert replacement and repair of brake pads, discs, calipers, and complete clutch kits including flywheels."
+    },
+    {
+      "id": 5,
+      "iconName": "wind",
+      "title": "Exhausts and Emissions",
+      "description": "Exhaust system repair, DPF cleaning, and emission testing to meet environmental standards and pass NCT."
+    },
+    {
+      "id": 6,
+      "iconName": "zap",
+      "title": "Batteries and Electrics",
+      "description": "Battery health checks, alternator testing, and replacements with high-quality, long-lasting units."
+    },
+    {
+      "id": 7,
+      "iconName": "activity",
+      "title": "Timing Belts",
+      "description": "Critical engine maintenance. Precision replacement of timing belts and water pumps to prevent catastrophic engine failure."
+    },
+    {
+      "id": 8,
+      "iconName": "ruler",
+      "title": "Wheel Alignment",
+      "description": "3D laser wheel alignment and balancing to prevent uneven tyre wear, save fuel, and improve handling safety."
+    },
+    {
+      "id": 9,
+      "iconName": "alerttriangle",
+      "title": "Warning Light Reset",
+      "description": "Resetting service indicators, ABS, ESP, and Airbag lights after professional repair and verification."
+    },
+    {
+      "id": 10,
+      "iconName": "car",
+      "title": "Crash Repairs",
+      "description": "Professional bodywork repairs and panel beating to restore your vehicle to factory condition after a collision."
+    },
+    {
+      "id": 11,
+      "iconName": "layers",
+      "title": "All Makes and Models",
+      "description": "We have the tooling and technical data to service cars, vans, and 4x4s of all major manufacturers."
+    }
+  ],
+  "highlight": {
+    "title": "Busy Schedule?\nWe Can Help.",
+    "body": "We offer a free collection and return service from your home or workplace within our local area. Let us take the hassle out of your car maintenance.",
+    "bullets": [
+      "Home Collection",
+      "Work Collection",
+      "Fully Insured"
+    ],
+    "ctaLabel": "Arrange Collection",
+    "ctaPhone": "0872325767"
+  }
+}

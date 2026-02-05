@@ -1,39 +1,10 @@
 import React from 'react';
 import { Quote, Star, MessageSquare } from 'lucide-react';
 import { Testimonial } from '../types';
+import testimonialsContent from '../content/testimonials.json';
 
 const Testimonials: React.FC = () => {
-  const reviews: Testimonial[] = [
-    {
-      id: 1,
-      name: "Mick Stone",
-      content: "I’ve always trusted John with my pride and joy. His service is unrivalled. The attention to detail is something you just don't find at the big dealerships anymore."
-    },
-    {
-      id: 2,
-      name: "Mary B.",
-      role: "Intel Employee",
-      content: "Thanks for getting me back on the road John, I’d be lost without you! The collection service from Intel was a lifesaver."
-    },
-    {
-      id: 3,
-      name: "Tom Williams",
-      location: "Kilcock",
-      content: "We had an unlucky collision in the bad icy conditions over Christmas. JM Motors had us right in 3 days, and the bill wasn’t half as bad as I thought it would be! Top class."
-    },
-    {
-      id: 4,
-      name: "Darren Mooney",
-      location: "Kilcock",
-      content: "We left our van in with JM Motors to be repaired and they dealt with the insurance company directly, it really cut down the hassle involved. Highly recommended for commercial work."
-    },
-    {
-        id: 5,
-        name: "Sarah C.",
-        location: "Maynooth",
-        content: "Passed my NCT first time after a pre-check here. They spotted a suspension issue that would have failed me. Honest and reliable."
-    }
-  ];
+  const reviews: Testimonial[] = testimonialsContent.reviews;
 
   return (
     <div className="min-h-screen bg-brand-light">
@@ -43,8 +14,8 @@ const Testimonials: React.FC = () => {
          <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-red/20 rounded-full blur-3xl mix-blend-screen animate-pulse"></div>
         
         <div className="relative z-10">
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Client Reviews</h1>
-          <p className="text-slate-400 max-w-2xl mx-auto text-xl font-light">Don't just take our word for it. Here is what our community has to say.</p>
+          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">{testimonialsContent.header.title}</h1>
+          <p className="text-slate-400 max-w-2xl mx-auto text-xl font-light">{testimonialsContent.header.subtitle}</p>
         </div>
       </div>
 
@@ -57,7 +28,7 @@ const Testimonials: React.FC = () => {
               </div>
               
               <div className="flex gap-1 mb-8 text-yellow-400 relative z-10">
-                {[1,2,3,4,5].map(i => <Star key={i} size={18} fill="currentColor" className="drop-shadow-sm" />)}
+                {[1, 2, 3, 4, 5].map((i) => <Star key={i} size={18} fill="currentColor" className="drop-shadow-sm" />)}
               </div>
               
               <p className="text-slate-700 text-lg leading-relaxed italic mb-8 flex-grow relative z-10 font-medium">
@@ -73,7 +44,7 @@ const Testimonials: React.FC = () => {
                   {(review.location || review.role) && (
                     <p className="text-xs text-brand-red font-bold uppercase tracking-widest mt-1">
                       {review.role ? review.role : ''}
-                      {review.role && review.location ? ' • ' : ''}
+                      {review.role && review.location ? ' - ' : ''}
                       {review.location ? review.location : ''}
                     </p>
                   )}
@@ -85,9 +56,9 @@ const Testimonials: React.FC = () => {
         
         <div className="mt-20 text-center">
              <div className="inline-flex flex-col items-center">
-                <p className="text-slate-500 mb-8 text-lg font-light">Have you used our services? We'd love to hear from you.</p>
-                <a href="mailto:jmmotors@eircom.net" className="flex items-center gap-3 bg-white hover:bg-slate-50 border border-slate-200 hover:border-brand-red/30 text-slate-800 font-bold uppercase tracking-widest py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all group">
-                   <MessageSquare size={20} className="text-brand-red group-hover:scale-110 transition-transform" /> Submit a Review
+                <p className="text-slate-500 mb-8 text-lg font-light">{testimonialsContent.cta.text}</p>
+                <a href={`mailto:${testimonialsContent.cta.email}`} className="flex items-center gap-3 bg-white hover:bg-slate-50 border border-slate-200 hover:border-brand-red/30 text-slate-800 font-bold uppercase tracking-widest py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all group">
+                   <MessageSquare size={20} className="text-brand-red group-hover:scale-110 transition-transform" /> {testimonialsContent.cta.buttonLabel}
                 </a>
              </div>
         </div>

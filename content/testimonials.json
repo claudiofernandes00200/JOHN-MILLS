@@ -1,0 +1,42 @@
+{
+  "header": {
+    "title": "Client Reviews",
+    "subtitle": "Do not just take our word for it. Here is what our community has to say."
+  },
+  "reviews": [
+    {
+      "id": 1,
+      "name": "Mick Stone",
+      "content": "I have always trusted John with my pride and joy. His service is unrivalled. The attention to detail is something you just do not find at the big dealerships anymore."
+    },
+    {
+      "id": 2,
+      "name": "Mary B.",
+      "role": "Intel Employee",
+      "content": "Thanks for getting me back on the road John, I would be lost without you. The collection service from Intel was a lifesaver."
+    },
+    {
+      "id": 3,
+      "name": "Tom Williams",
+      "location": "Kilcock",
+      "content": "We had an unlucky collision in the bad icy conditions over Christmas. JM Motors had us right in 3 days, and the bill was not half as bad as I thought it would be. Top class."
+    },
+    {
+      "id": 4,
+      "name": "Darren Mooney",
+      "location": "Kilcock",
+      "content": "We left our van in with JM Motors to be repaired and they dealt with the insurance company directly, it really cut down the hassle involved. Highly recommended for commercial work."
+    },
+    {
+      "id": 5,
+      "name": "Sarah C.",
+      "location": "Maynooth",
+      "content": "Passed my NCT first time after a pre-check here. They spotted a suspension issue that would have failed me. Honest and reliable."
+    }
+  ],
+  "cta": {
+    "text": "Have you used our services? We would love to hear from you.",
+    "buttonLabel": "Submit a Review",
+    "email": "jmmotors@eircom.net"
+  }
+}
