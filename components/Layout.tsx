@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, MapPin, Mail, Wrench, Clock, Facebook, Instagram, ChevronRight } from 'lucide-react';
+import { useContent } from '../context/ContentContext';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { content } = useContent();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -31,6 +33,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  if (!content) return null;
+
   return (
     <div className="flex flex-col min-h-screen bg-brand-light text-slate-800 font-sans selection:bg-brand-red selection:text-white">
       {/* Top Bar - Dark & Technical */}
@@ -40,21 +44,23 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2 relative z-10">
           <div className="flex items-center space-x-6">
-            <a href="tel:016104376" className="flex items-center gap-2 hover:text-white transition-colors group">
-              <Phone size={14} className="text-brand-red group-hover:animate-pulse" /> <span>01 610 4376</span>
+            <a href={`tel:${content.general.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-white transition-colors group">
+              <Phone size={14} className="text-brand-red group-hover:animate-pulse" /> <span>{content.general.phone}</span>
             </a>
-             <a href="tel:0872325767" className="flex items-center gap-2 hover:text-white transition-colors group">
-              <Phone size={14} className="text-brand-red group-hover:animate-pulse" /> <span>087 232 5767</span>
+             <a href={`tel:${content.general.mobile.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-white transition-colors group">
+              <Phone size={14} className="text-brand-red group-hover:animate-pulse" /> <span>{content.general.mobile}</span>
             </a>
-            <a href="mailto:jmmotors@eircom.net" className="flex items-center gap-2 hover:text-white transition-colors hidden sm:flex">
-              <Mail size={14} className="text-brand-red" /> <span>jmmotors@eircom.net</span>
+            <a href={`mailto:${content.general.email}`} className="flex items-center gap-2 hover:text-white transition-colors hidden sm:flex">
+              <Mail size={14} className="text-brand-red" /> <span>{content.general.email}</span>
             </a>
           </div>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-2 text-slate-400">
               <Clock size={14} className="text-brand-red" /> 
-              <span>Mon-Fri: 8:30am - 6:00pm</span>
+              <span>{content.general.hours.weekdays}</span>
             </span>
+             <span className="hidden sm:inline text-slate-600">|</span>
+             <span className="text-slate-400 hidden sm:inline">{content.general.hours.saturday}</span>
           </div>
         </div>
       </div>
@@ -207,19 +213,19 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   <div className="p-2 bg-slate-800 rounded group-hover:text-white transition-colors">
                       <MapPin size={16} className="text-brand-red" />
                   </div>
-                  <span className="group-hover:text-slate-200 transition-colors">Kilmacredock, Maynooth,<br/>Co.Kildare</span>
+                  <span className="group-hover:text-slate-200 transition-colors whitespace-pre-line">{content.general.address.replace(', ', ',\n')}</span>
                 </li>
                 <li className="flex items-center gap-3 group">
                   <div className="p-2 bg-slate-800 rounded group-hover:text-white transition-colors">
                       <Phone size={16} className="text-brand-red" />
                   </div>
-                  <span className="group-hover:text-slate-200 transition-colors">01 610 4376</span>
+                  <span className="group-hover:text-slate-200 transition-colors">{content.general.phone}</span>
                 </li>
                 <li className="flex items-center gap-3 group">
                    <div className="p-2 bg-slate-800 rounded group-hover:text-white transition-colors">
                       <Mail size={16} className="text-brand-red" />
                    </div>
-                  <span className="group-hover:text-slate-200 transition-colors">jmmotors@eircom.net</span>
+                  <span className="group-hover:text-slate-200 transition-colors">{content.general.email}</span>
                 </li>
               </ul>
             </div>
@@ -232,15 +238,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <ul className="space-y-3 text-sm">
                 <li className="flex justify-between text-slate-300 border-b border-slate-700/50 pb-2">
                   <span>Mon - Fri</span>
-                  <span className="font-bold text-white">8:30 - 6:00</span>
+                  <span className="font-bold text-white">{content.general.hours.weekdays.replace('Mon-Fri: ', '')}</span>
                 </li>
                 <li className="flex justify-between text-slate-300 border-b border-slate-700/50 pb-2">
                   <span>Saturday</span>
-                  <span className="font-bold text-white">9:00 - 1:00</span>
+                  <span className="font-bold text-white">{content.general.hours.saturday.replace('Saturday: ', '')}</span>
                 </li>
                 <li className="flex justify-between text-slate-500 pt-1">
                   <span>Sunday</span>
-                  <span className="text-brand-red text-xs font-bold uppercase border border-brand-red/30 px-2 py-0.5 rounded">Closed</span>
+                  <span className="text-brand-red text-xs font-bold uppercase border border-brand-red/30 px-2 py-0.5 rounded">{content.general.hours.sunday}</span>
                 </li>
               </ul>
             </div>
@@ -249,7 +255,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         
         <div className="bg-slate-950 py-6 border-t border-slate-800/50 relative z-10">
           <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 uppercase tracking-wider font-medium">
-            <p>&copy; {new Date().getFullYear()} John Mills Motors. All rights reserved.</p>
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <p>&copy; {new Date().getFullYear()} John Mills Motors. All rights reserved.</p>
+              {/* Use a standard anchor tag to load the admin html file */}
+              <a href="./admin/index.html" className="opacity-40 hover:opacity-100 hover:text-brand-red transition-all">Admin Panel</a>
+            </div>
             <p className="mt-2 md:mt-0 flex items-center gap-2">
                 Designed for Performance
                 <span className="w-1 h-1 rounded-full bg-slate-700"></span>

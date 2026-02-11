@@ -7,6 +7,7 @@ import Services from './pages/Services';
 import Location from './pages/Location';
 import Testimonials from './pages/Testimonials';
 import Contact from './pages/Contact';
+import { ContentProvider } from './context/ContentContext';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -19,19 +20,25 @@ const ScrollToTop = () => {
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <ScrollToTop />
-      <Layout>
+    <ContentProvider>
+      <Router>
+        <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/location" element={<Location />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/location" element={<Location />} />
+                <Route path="/testimonials" element={<Testimonials />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </Layout>
+          } />
         </Routes>
-      </Layout>
-    </Router>
+      </Router>
+    </ContentProvider>
   );
 };
 

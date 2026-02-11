@@ -1,195 +1,157 @@
-import React, { useEffect, useState } from 'react';
-import { Phone, Mail, MapPin, Send, Clock, Facebook, ArrowRight } from 'lucide-react';
-import contactContent from '../content/contact.json';
+import React from 'react';
+import { Phone, Mail, MapPin, Clock, Facebook, Navigation, Smartphone } from 'lucide-react';
+import { useContent } from '../context/ContentContext';
 
 const Contact: React.FC = () => {
-  const toTel = (value: string) => value.replace(/\s+/g, '');
-  const [submitted, setSubmitted] = useState(false);
+  const { content } = useContent();
 
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    const hash = window.location.hash;
-    setSubmitted(hash.includes('success=1'));
-  }, []);
+  if (!content) return null;
 
   return (
-    <div className="min-h-screen bg-brand-light">
-      <div className="bg-brand-dark py-32 pb-48 text-center text-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-20 bg-cover bg-center mix-blend-overlay"
-          style={{ backgroundImage: `url(${contactContent.header.image})` }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/80 to-brand-dark"></div>
-        <div className="relative z-10">
-            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6">{contactContent.header.title}</h1>
-            <p className="text-slate-400 text-xl font-light">{contactContent.header.subtitle}</p>
+    <div className="min-h-screen bg-slate-100 font-sans">
+      {/* Hero Section - Taller to accommodate overlap safely */}
+      <div className="bg-brand-dark pt-32 pb-48 md:pt-40 md:pb-64 text-center text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=2070')] opacity-20 bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/90 to-brand-dark"></div>
+        
+        {/* Content Container - Pushed up to avoid overlap */}
+        <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-start">
+            <h1 className="text-4xl md:text-6xl font-display font-bold mb-4 tracking-tight animate-fade-in-up">Contact Us</h1>
+            <p className="text-slate-400 text-lg md:text-xl font-light max-w-xl mx-auto animate-fade-in-up delay-100">
+              We are here to help with all your automotive needs.
+            </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-20 -mt-32 relative z-10">
-        <div className="max-w-7xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row min-h-[700px]">
-          
-          {/* Contact Info Sidebar */}
-          <div className="lg:w-4/12 bg-slate-900 p-12 text-white relative overflow-hidden flex flex-col justify-between">
-            <div className="absolute inset-0 bg-carbon opacity-20"></div>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-red rounded-full blur-[100px] opacity-20"></div>
+      {/* Main Content Card - Overlapping Hero with Negative Margin */}
+      <div className="container mx-auto px-4 -mt-32 md:-mt-48 relative z-20 pb-20 animate-fade-in-up delay-200">
+        <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-slate-200">
             
-            <div className="relative z-10">
-                <h2 className="text-3xl font-display font-bold mb-12 text-white border-b border-slate-700 pb-6">{contactContent.info.title}</h2>
-                
-                <div className="space-y-12">
-                <div className="flex items-start gap-6 group">
-                    <div className="bg-slate-800 p-4 rounded-2xl group-hover:bg-brand-red transition-colors duration-300 shadow-lg">
-                    <MapPin size={24} className="text-white" />
-                    </div>
-                    <div>
-                    <h3 className="font-bold text-lg mb-2 text-slate-200">{contactContent.info.addressTitle}</h3>
-                    <p className="text-slate-400 leading-relaxed font-light text-sm">
-                        {contactContent.info.addressLines.map((line) => (
-                          <span key={line} className="block">{line}</span>
-                        ))}
-                    </p>
-                    </div>
-                </div>
+            {/* Left Side: Contact Info (White Theme - "Inside white stuff") */}
+            <div className="md:w-5/12 bg-white p-8 md:p-12 relative overflow-hidden flex flex-col border-r border-slate-100">
+                <div className="relative z-10 flex-grow">
+                    <h3 className="text-2xl font-display font-bold mb-8 text-slate-900 border-b border-slate-100 pb-4">Get in Touch</h3>
+                    
+                    <div className="space-y-10">
+                        {/* Address */}
+                        <div className="flex gap-5 group">
+                            <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center shrink-0 group-hover:bg-brand-red transition-colors duration-300 text-brand-red group-hover:text-white shadow-sm">
+                                <MapPin size={22} />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-xs text-slate-400 uppercase tracking-widest mb-1">Visit Us</h4>
+                                <p className="text-slate-700 leading-relaxed text-sm whitespace-pre-line font-medium">
+                                    {content.general.address.replace(', ', ',\n')}
+                                </p>
+                                <a 
+                                    href={content.general.googleMapsLink || "https://maps.google.com"} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 mt-3 text-brand-red text-xs font-bold hover:text-brand-dark transition-colors border-b border-brand-red/20 hover:border-brand-dark pb-0.5"
+                                >
+                                    <Navigation size={12} /> Get Directions
+                                </a>
+                            </div>
+                        </div>
 
-                <div className="flex items-start gap-6 group">
-                    <div className="bg-slate-800 p-4 rounded-2xl group-hover:bg-brand-red transition-colors duration-300 shadow-lg">
-                    <Phone size={24} className="text-white" />
-                    </div>
-                    <div>
-                    <h3 className="font-bold text-lg mb-2 text-slate-200">{contactContent.info.phoneTitle}</h3>
-                    <p className="text-slate-400 font-light text-sm space-y-1">
-                        <span className="block">
-                          Office:{' '}
-                          <a href={`tel:${toTel(contactContent.info.phoneOffice)}`} className="hover:text-white transition-colors border-b border-slate-600 hover:border-white pb-0.5">
-                            {contactContent.info.phoneOffice}
-                          </a>
-                        </span>
-                        <span className="block">
-                          Mobile:{' '}
-                          <a href={`tel:${toTel(contactContent.info.phoneMobile)}`} className="hover:text-white transition-colors border-b border-slate-600 hover:border-white pb-0.5">
-                            {contactContent.info.phoneMobile}
-                          </a>
-                        </span>
-                    </p>
-                    </div>
-                </div>
+                        {/* Email */}
+                        <div className="flex gap-5 group">
+                            <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center shrink-0 group-hover:bg-brand-red transition-colors duration-300 text-brand-red group-hover:text-white shadow-sm">
+                                <Mail size={22} />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-xs text-slate-400 uppercase tracking-widest mb-1">Email Us</h4>
+                                <a href={`mailto:${content.general.email}`} className="text-slate-700 hover:text-brand-red transition-colors text-base font-medium block">
+                                    {content.general.email}
+                                </a>
+                                <span className="text-slate-500 text-xs mt-1 block">Response within 24 hours</span>
+                            </div>
+                        </div>
 
-                <div className="flex items-start gap-6 group">
-                    <div className="bg-slate-800 p-4 rounded-2xl group-hover:bg-brand-red transition-colors duration-300 shadow-lg">
-                    <Mail size={24} className="text-white" />
-                    </div>
-                    <div>
-                    <h3 className="font-bold text-lg mb-2 text-slate-200">{contactContent.info.emailTitle}</h3>
-                    <a href={`mailto:${contactContent.info.email}`} className="text-slate-400 hover:text-white transition-colors font-light text-sm border-b border-slate-600 hover:border-white pb-0.5">
-                        {contactContent.info.email}
-                    </a>
-                    </div>
-                </div>
-
-                <div className="flex items-start gap-6 group">
-                    <div className="bg-slate-800 p-4 rounded-2xl group-hover:bg-brand-red transition-colors duration-300 shadow-lg">
-                    <Clock size={24} className="text-white" />
-                    </div>
-                    <div>
-                    <h3 className="font-bold text-lg mb-2 text-slate-200">{contactContent.info.hoursTitle}</h3>
-                    <p className="text-slate-400 font-light text-sm">
-                        {contactContent.info.hoursLines.map((line) => (
-                          <span key={line} className="block">{line}</span>
-                        ))}
-                    </p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            
-            <div className="relative z-10 mt-12 pt-8 border-t border-slate-800">
-                <div className="flex items-center justify-between">
-                   <span className="text-slate-500 text-xs uppercase tracking-widest font-bold">{contactContent.info.socialLabel}</span>
-                   <a href={contactContent.info.facebookUrl} className="p-3 bg-slate-800 rounded-full hover:bg-brand-red transition-colors text-white shadow-lg"><Facebook size={20} /></a>
-                </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="lg:w-8/12 p-12 lg:p-16 bg-white">
-            <div className="max-w-2xl mx-auto">
-                <h2 className="text-3xl font-display font-bold mb-4 text-slate-900">{contactContent.form.title}</h2>
-                <p className="text-slate-500 mb-12 text-lg font-light">{contactContent.form.subtitle}</p>
-
-                {submitted && (
-                  <div className="mb-10 rounded-xl border border-green-200 bg-green-50 px-6 py-4 text-green-800 text-sm font-semibold">
-                    Thanks! Your message has been received. We will get back to you shortly.
-                  </div>
-                )}
-                
-                <form
-                  className="space-y-8"
-                  name="contact"
-                  method="POST"
-                  action="/#/contact?success=1"
-                  data-netlify="true"
-                  netlify-honeypot="bot-field"
-                >
-                <input type="hidden" name="form-name" value="contact" />
-                <input type="hidden" name="bot-field" />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="group">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 group-focus-within:text-brand-red transition-colors">{contactContent.form.nameLabel}</label>
-                        <input 
-                        type="text" 
-                        name="name"
-                        className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 font-medium text-slate-700 placeholder:text-slate-300"
-                        placeholder={contactContent.form.namePlaceholder}
-                        required
-                        />
-                    </div>
-                    <div className="group">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 group-focus-within:text-brand-red transition-colors">{contactContent.form.phoneLabel}</label>
-                        <input 
-                        type="tel" 
-                        name="phone"
-                        className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 font-medium text-slate-700 placeholder:text-slate-300"
-                        placeholder={contactContent.form.phonePlaceholder}
-                        />
-                    </div>
-                </div>
-                
-                <div className="group">
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 group-focus-within:text-brand-red transition-colors">{contactContent.form.subjectLabel}</label>
-                    <div className="relative">
-                        <select name="subject" className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 font-medium text-slate-700 appearance-none cursor-pointer">
-                            {contactContent.form.subjectOptions.map((option) => (
-                              <option key={option}>{option}</option>
-                            ))}
-                        </select>
-                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                            <ArrowRight size={18} className="rotate-90" />
+                        {/* Phone */}
+                        <div className="flex gap-5 group">
+                             <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center shrink-0 group-hover:bg-brand-red transition-colors duration-300 text-brand-red group-hover:text-white shadow-sm">
+                                <Phone size={22} />
+                            </div>
+                            <div className="w-full">
+                                <h4 className="font-bold text-xs text-slate-400 uppercase tracking-widest mb-2">Call Us</h4>
+                                <div className="space-y-4">
+                                    <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+                                        <span className="text-slate-500 text-xs uppercase font-bold flex items-center gap-2"><Phone size={12} /> Office</span>
+                                        <a href={`tel:${content.general.phone.replace(/\s/g, '')}`} className="text-slate-900 hover:text-brand-red transition-colors font-display font-bold text-lg tracking-wide">
+                                            {content.general.phone}
+                                        </a>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-slate-500 text-xs uppercase font-bold flex items-center gap-2"><Smartphone size={12} /> Mobile</span>
+                                        <a href={`tel:${content.general.mobile.replace(/\s/g, '')}`} className="text-slate-900 hover:text-brand-red transition-colors font-display font-bold text-lg tracking-wide">
+                                            {content.general.mobile}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="group">
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 group-focus-within:text-brand-red transition-colors">{contactContent.form.messageLabel}</label>
-                    <textarea 
-                    name="message"
-                    className="w-full px-4 py-4 rounded-xl bg-slate-50 border border-slate-100 focus:bg-white focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 outline-none transition-all duration-300 font-medium text-slate-700 placeholder:text-slate-300 h-40 resize-none"
-                    placeholder={contactContent.form.messagePlaceholder}
-                    required
-                    ></textarea>
+                {/* Social Footer */}
+                <div className="pt-8 mt-10 border-t border-slate-100 relative z-10">
+                    <div className="flex items-center justify-between">
+                        <span className="font-bold text-xs text-slate-400 uppercase tracking-widest">Connect With Us</span>
+                        <a href="#" className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center hover:bg-[#1877F2] transition-all text-slate-600 hover:text-white hover:-translate-y-1">
+                            <Facebook size={18} />
+                        </a>
+                    </div>
                 </div>
-                
-                <button 
-                    type="submit"
-                    className="w-full bg-brand-red hover:bg-red-600 text-white font-bold font-display uppercase tracking-widest py-5 rounded-xl shadow-xl shadow-red-500/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3 group"
-                >
-                    {contactContent.form.submitLabel} <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </button>
-                </form>
             </div>
-          </div>
+
+            {/* Right Side: Hours & Map (Grey Theme for Contrast) */}
+            <div className="md:w-7/12 bg-slate-50 p-8 md:p-12 flex flex-col">
+                <div className="mb-12">
+                    <h3 className="text-2xl font-display font-bold text-slate-900 mb-6 flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-white shadow-sm text-brand-red flex items-center justify-center">
+                            <Clock size={20} />
+                        </div>
+                        Opening Hours
+                    </h3>
+                    <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                        <ul className="space-y-4">
+                            <li className="flex items-center justify-between border-b border-slate-100 pb-3 last:border-0 last:pb-0 group">
+                                <span className="font-medium text-slate-500 text-sm group-hover:text-slate-800 transition-colors">Monday - Friday</span>
+                                <span className="font-bold text-slate-900 font-display">{content.general.hours.weekdays.replace('Mon-Fri: ', '')}</span>
+                            </li>
+                            <li className="flex items-center justify-between border-b border-slate-100 pb-3 last:border-0 last:pb-0 group">
+                                <span className="font-medium text-slate-500 text-sm group-hover:text-slate-800 transition-colors">Saturday</span>
+                                <span className="font-bold text-slate-900 font-display">{content.general.hours.saturday.replace('Saturday: ', '')}</span>
+                            </li>
+                            <li className="flex items-center justify-between pb-0 pt-1 group">
+                                <span className="font-medium text-slate-500 text-sm group-hover:text-slate-800 transition-colors">Sunday</span>
+                                <span className="font-bold text-brand-red px-3 py-1 bg-red-50 rounded text-xs uppercase tracking-wide border border-brand-red/10">Closed</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="flex-grow flex flex-col">
+                    <h3 className="text-xl font-display font-bold text-slate-900 mb-5 flex items-center gap-3">
+                         <div className="w-10 h-10 rounded-lg bg-white shadow-sm text-brand-red flex items-center justify-center">
+                            <Navigation size={20} />
+                        </div>
+                        Location
+                    </h3>
+                    <div className="w-full flex-grow min-h-[300px] bg-slate-200 rounded-2xl overflow-hidden relative shadow-inner border border-slate-200 group">
+                         <iframe 
+                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2380.6074247838915!2d-6.543239822949348!3d53.36818037308921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486771c0ed118b15%3A0xef13d81549446a93!2sJM%20Motors!5e0!3m2!1spt-PT!2sie!4v1770820034745!5m2!1spt-PT!2sie" 
+                           className="w-full h-full absolute inset-0"
+                           style={{ border: 0 }}
+                           allowFullScreen 
+                           loading="lazy" 
+                           referrerPolicy="no-referrer-when-downgrade"
+                           title="JM Motors Location Map"
+                         ></iframe>
+                    </div>
+                </div>
+            </div>
 
         </div>
       </div>

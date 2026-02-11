@@ -1,0 +1,103 @@
+{
+  "general": {
+    "phone": "01 610 4376",
+    "mobile": "087 232 5767",
+    "email": "jmmotors@eircom.net",
+    "address": "Kilmacredock, Maynooth, Co.Kildare",
+    "googleMapsLink": "https://www.google.com/maps/search/?api=1&query=Kilmacredock+Maynooth",
+    "hours": {
+      "weekdays": "Mon-Fri: 8:30am - 6:00pm",
+      "saturday": "Saturday: 9:00am - 1:00pm",
+      "sunday": "Closed"
+    }
+  },
+  "home": {
+    "hero": {
+      "tagline": "Serving Maynooth for over 15 Years",
+      "titlePart1": "Precision Mechanics",
+      "titlePart2": "You Can Trust",
+      "description": "Expert workmanship, advanced diagnostics, and a commitment to safety. We provide dealership-quality service at local prices.",
+      "buttonPrimary": "Book Service",
+      "buttonSecondary": "Our Services"
+    },
+    "features": [
+      { "title": "Fully Insured", "text": "Comprehensive insurance coverage for total peace of mind while your car is with us." },
+      { "title": "Expert Diagnostics", "text": "State-of-the-art computer diagnostic systems to identify issues accurately." },
+      { "title": "Free Collection", "text": "Complimentary vehicle collection and return service from your home or work." }
+    ],
+    "intro": {
+      "est": "Est. 2004",
+      "title": "High Standard of Workmanship is Our Priority",
+      "description": "JM Motors mechanics are highly trained in Car Servicing. We use only the latest technology for our diagnostic systems and recommended parts to ensure safety and reliability.",
+      "badges": ["All Makes & Models", "Pre-NCT Specialists", "Timing Belt Experts", "Crash Repairs"],
+      "yearsExperience": "20+"
+    },
+    "cta": {
+      "title": "Ready to book?",
+      "text": "Don't wait until it's too late. Secure your Pre-NCT check or service today with Maynooth's most reliable mechanics."
+    }
+  },
+  "about": {
+    "title": "About JM Motors",
+    "subtitle": "Reliable • Experienced • Local",
+    "heading": "Your Local Mechanic Since 2004",
+    "p1": "John Mills has been a mechanic for over 20 years, operating as an independent mechanic for the last 11 years. What started as a passion for engines has grown into Maynooth's most trusted independent garage.",
+    "p2": "At JM Motors, we believe that a high standard of workmanship is the top priority. We have built a reputation in Maynooth and Kildare for honesty, reliability, and technical expertise. We don't just fix cars; we build relationships with our customers based on trust.",
+    "p3": "We use only the latest technology for our diagnostic systems and only recommended parts to ensure safety and peace of mind. Whether you drive a compact car, a commercial van, or a 4x4, we treat every vehicle with the same level of meticulous care as if it were our own.",
+    "stats": {
+      "years": "15+",
+      "customers": "1000s"
+    }
+  },
+  "services": {
+    "headerTitle": "Our Services",
+    "headerText": "JM Motors provides a full range of car repairs and servicing. We pride ourselves on using only recommended parts and the latest technology.",
+    "items": [
+      { "id": 1, "title": "Full Car Servicing", "description": "Comprehensive interim and full servicing for all makes and models to maintain manufacturer warranties and keep your vehicle running smoothly." },
+      { "id": 2, "title": "Pre-NCT / DOE Checks", "description": "Rigorous multi-point inspection to prepare your vehicle for the National Car Test, identifying failure points before you go." },
+      { "id": 3, "title": "Computer Diagnostics", "description": "Using dealer-level diagnostic software to identify fault codes, engine warning lights, and complex electrical system errors." },
+      { "id": 4, "title": "Brakes & Clutches", "description": "Expert replacement and repair of brake pads, discs, calipers, and complete clutch kits including flywheels." },
+      { "id": 5, "title": "Exhausts & Emissions", "description": "Exhaust system repair, DPF cleaning, and emission testing to meet environmental standards and pass NCT." },
+      { "id": 6, "title": "Batteries & Electrics", "description": "Battery health checks, alternator testing, and replacements with high-quality, long-lasting units." },
+      { "id": 7, "title": "Timing Belts", "description": "Critical engine maintenance. Precision replacement of timing belts and water pumps to prevent catastrophic engine failure." },
+      { "id": 8, "title": "Wheel Alignment", "description": "3D laser wheel alignment and balancing to prevent uneven tyre wear, save fuel, and improve handling safety." },
+      { "id": 9, "title": "Warning Light Reset", "description": "Resetting service indicators, ABS, ESP, and Airbag lights after professional repair and verification." },
+      { "id": 10, "title": "Crash Repairs", "description": "Professional bodywork repairs and panel beating to restore your vehicle to factory condition after a collision." },
+      { "id": 11, "title": "All Makes & Models", "description": "We have the tooling and technical data to service cars, vans, and 4x4s of all major manufacturers." }
+    ],
+    "collectionTitle": "Busy Schedule? We Can Help.",
+    "collectionText": "We offer a free collection and return service from your home or workplace within our local area. Let us take the hassle out of your car maintenance."
+  },
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Mick Stone",
+      "role": "Loyal Customer",
+      "content": "I’ve always trusted John with my pride and joy. His service is unrivalled. The attention to detail is something you just don't find at the big dealerships anymore."
+    },
+    {
+      "id": 2,
+      "name": "Mary B.",
+      "role": "Intel Employee",
+      "content": "Thanks for getting me back on the road John, I’d be lost without you! The collection service from Intel was a lifesaver."
+    },
+    {
+      "id": 3,
+      "name": "Tom Williams",
+      "location": "Kilcock",
+      "content": "We had an unlucky collision in the bad icy conditions over Christmas. JM Motors had us right in 3 days, and the bill wasn’t half as bad as I thought it would be! Top class."
+    },
+    {
+      "id": 4,
+      "name": "Darren Mooney",
+      "location": "Kilcock",
+      "content": "We left our van in with JM Motors to be repaired and they dealt with the insurance company directly, it really cut down the hassle involved. Highly recommended for commercial work."
+    },
+    {
+        "id": 5,
+        "name": "Sarah C.",
+        "location": "Maynooth",
+        "content": "Passed my NCT first time after a pre-check here. They spotted a suspension issue that would have failed me. Honest and reliable."
+    }
+  ]
+}
